@@ -11,13 +11,11 @@ public class CameraControls : MonoBehaviour {
     private const float distance = 10.0f;
     private const float viewAngle = 30.0f;
 
-    private Vector3 up = new Vector3(0.0f, 0.0f, 1.0f);
-
 	void Start () {
         target = new Vector3(0.0f, 0.0f, 0.0f);
         float x = distance * Mathf.Cos(camTheta);
-        float y = distance * Mathf.Sin(camTheta);
-        float z = distance * 0.5f;
+        float y = distance * 0.5f;
+        float z = distance * Mathf.Sin(camTheta);
         offset = new Vector3(x, y, z);
         CamUpdate();
 	}
@@ -42,9 +40,9 @@ public class CameraControls : MonoBehaviour {
     void CamUpdate()
     { 
         offset.x = distance * Mathf.Cos(camTheta);
-        offset.y = distance * Mathf.Sin(camTheta);
-        offset.z = distance * 0.5f;
+        offset.y = distance * 0.5f;
+        offset.z = distance * Mathf.Sin(camTheta);
         transform.position = offset;
-        transform.LookAt(target, up);
+        transform.LookAt(target);
     }
 }
