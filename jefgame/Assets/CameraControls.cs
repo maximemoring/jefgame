@@ -7,14 +7,11 @@ public class CameraControls : MonoBehaviour {
     private float camTheta = Mathf.PI*0.25f;
 
     private const float orbitSpeed = .05f;
-    private const float moveSpeed = .05f;
 
     private const float distance = 10.0f;
+    private const float viewAngle = 30.0f;
 
-    private const float heightCoef = 0.57735026919f; // =1/sqrt(3), for a 30-degree vertical viewing angle
-
-
-    void Start () {
+	void Start () {
         target = new Vector3(0.0f, 0.0f, 0.0f);
         offset = new Vector3(0.0f, 0.0f, 0.0f);
         updateOffset();
@@ -23,40 +20,15 @@ public class CameraControls : MonoBehaviour {
 
 	void Update () {
         bool needCamUpdate = false;
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.A))
         {
             camTheta += orbitSpeed;
             needCamUpdate = true;
         }
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            camTheta -= orbitSpeed;
-            needCamUpdate = true;
-        }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            target.x += moveSpeed * Mathf.Cos(camTheta + Mathf.PI);
-            target.z += moveSpeed * Mathf.Sin(camTheta + Mathf.PI);
-            needCamUpdate = true;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            target.x += moveSpeed * Mathf.Cos(camTheta + 0.5f * Mathf.PI);
-            target.z += moveSpeed * Mathf.Sin(camTheta + 0.5f * Mathf.PI);
-            needCamUpdate = true;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            target.x += moveSpeed * Mathf.Cos(camTheta);
-            target.z += moveSpeed * Mathf.Sin(camTheta);
-            needCamUpdate = true;
-        }
         if (Input.GetKey(KeyCode.D))
         {
-            target.x += moveSpeed * Mathf.Cos(camTheta - 0.5f * Mathf.PI);
-            target.z += moveSpeed * Mathf.Sin(camTheta - 0.5f * Mathf.PI);
+            camTheta -= orbitSpeed;
             needCamUpdate = true;
         }
 
@@ -71,8 +43,8 @@ public class CameraControls : MonoBehaviour {
     }
     
     void updateOffset() {
-        offset.x = target.x + distance * Mathf.Cos(camTheta);
-        offset.y = target.y + distance * heightCoef;
-        offset.z = target.z + distance * Mathf.Sin(camTheta);
+        offset.x = distance * Mathf.Cos(camTheta);
+        offset.y = distance * 0.6f;
+        offset.z = distance * Mathf.Sin(camTheta);
     }
 }
