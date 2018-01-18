@@ -13,10 +13,8 @@ public class CameraControls : MonoBehaviour {
 
 	void Start () {
         target = new Vector3(0.0f, 0.0f, 0.0f);
-        float x = distance * Mathf.Cos(camTheta);
-        float y = distance * 0.5f;
-        float z = distance * Mathf.Sin(camTheta);
-        offset = new Vector3(x, y, z);
+        offset = new Vector3(0.0f, 0.0f, 0.0f);
+        updateOffset();
         CamUpdate();
 	}
 
@@ -38,11 +36,15 @@ public class CameraControls : MonoBehaviour {
     }
 
     void CamUpdate()
-    { 
-        offset.x = distance * Mathf.Cos(camTheta);
-        offset.y = distance * 0.5f;
-        offset.z = distance * Mathf.Sin(camTheta);
+    {
+        updateOffset();
         transform.position = offset;
         transform.LookAt(target);
+    }
+    
+    void updateOffset() {
+        offset.x = distance * Mathf.Cos(camTheta);
+        offset.y = distance * 0.6f;
+        offset.z = distance * Mathf.Sin(camTheta);
     }
 }
