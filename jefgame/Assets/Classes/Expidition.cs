@@ -7,13 +7,13 @@ public class Expidition : MonoBehaviour {
     short leaderID; // Relates to the ID in the List
 
 	// Use this for initialization
-	void Start (Habitant[] selectedExpeditionists, short selectedLeaderID) {
-        expeditionists = new List<Habitant>(selectedExpeditionists);
-        leaderID = selectedLeaderID;
+	void Start() {
+        //expeditionists = new List<Habitant>(selectedExpeditionists);
+        //leaderID = selectedLeaderID;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		
 	}
 }
